@@ -6,6 +6,7 @@ const player = new Clappr.Player({
   playback: { controls: true },
   queue: {
     nextVideos: ['https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4'],
+    autoPlayNextVideo: true,
   },
   plugins: [window.QueuePlugin],
 })
