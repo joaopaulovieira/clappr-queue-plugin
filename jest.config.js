@@ -6,4 +6,12 @@ module.exports = {
   },
   moduleNameMapper: { '\\.(scss)$': '<rootDir>/src/__mocks__/styleMock.js' },
   collectCoverageFrom: ['src/*.js'],
+  coverageThreshold: {
+    global: {
+      branches: 90,
+      functions: 90,
+      lines: 90,
+      statements: 90,
+    },
+  },
 }

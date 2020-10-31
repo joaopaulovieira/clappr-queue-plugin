@@ -36,7 +36,7 @@
     "start": "DEV=true rollup --config --watch",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
-    "test": "jest --coverage --passWithNoTests",
+    "test": "jest --coverage",
     "test:debug": "node --inspect node_modules/.bin/jest --runInBand",
     "test:coverage": "open coverage/lcov-report/index.html"
   },
