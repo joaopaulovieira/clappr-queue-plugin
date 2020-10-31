@@ -1,0 +1,4 @@
+describe('QueuePlugin', () => {
+  test('', () => {})
+})
+
