@@ -48,6 +48,35 @@ describe('QueuePlugin', () => {
     })
   })
 
+  describe('constructor', () => {
+    test('sets videoQueue property value based on nextVideos config', () => {
+      const { plugin } = setupTest({ queue: { nextVideos: ['http://some-cool-webpage/path/some-cool-video.mp4'] } })
+      expect(plugin.videoQueue).toEqual(plugin.config.nextVideos)
+    })
+
+    test('sets videoQueue property default value if nextVideos config don\'t exists', () => {
+      const { plugin } = setupTest({ queue: {} })
+      expect(plugin.videoQueue).toEqual([])
+    })
+
+    test('sets startNextVideo property value based on autoPlayNextVideo config', () => {
+      const { plugin } = setupTest({ queue: { autoPlayNextVideo: false } })
+      expect(plugin.startNextVideo).toEqual(plugin.config.autoPlayNextVideo)
+    })
+
+    test('sets startNextVideo property default value if autoPlayNextVideo config don\'t exists', () => {
+      const { plugin } = setupTest({ queue: {} })
+      expect(plugin.startNextVideo).toBeTruthy()
+    })
+
+    test('always call bindEvents via super', () => {
+      jest.spyOn(QueuePlugin.prototype, 'bindEvents')
+      setupTest()
+
+      expect(QueuePlugin.prototype.bindEvents).toHaveBeenCalledTimes(1)
+    })
+  })
+
   describe('bindEvents method', () => {
     test('stops the current listeners before add new ones', () => {
       const { plugin } = setupTest()
@@ -149,6 +178,21 @@ describe('QueuePlugin', () => {
       plugin.playNextVideo()
 
       expect(container.play).toHaveBeenCalledTimes(1)
+    })
+
+    test('avoid autoplay the next video if autoPlayNextVideo config is false', () => {
+      const { core, container, plugin } = setupTest({
+        queue: {
+          nextVideos: ['http://some-cool-webpage/path/some-cool-video.mp4'],
+          autoPlayNextVideo: false,
+        },
+      }, true)
+      core.activeContainer = container
+      jest.spyOn(core, 'load').mockImplementation(() => {})
+      jest.spyOn(container, 'play').mockImplementation(() => {})
+      plugin.playNextVideo()
+
+      expect(container.play).not.toHaveBeenCalled()
     })
   })
 })

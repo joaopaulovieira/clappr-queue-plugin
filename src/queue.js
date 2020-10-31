@@ -10,6 +10,7 @@ export default class QueuePlugin extends CorePlugin {
   constructor(core) {
     super(core)
     this.videoQueue = this.config.nextVideos || []
+    this.startNextVideo = typeof this.config.autoPlayNextVideo !== 'boolean' && true || this.config.autoPlayNextVideo
   }
 
   bindEvents() {
@@ -30,6 +31,6 @@ export default class QueuePlugin extends CorePlugin {
   playNextVideo() {
     const nextVideo = this.videoQueue.shift()
     nextVideo && this.core.load(nextVideo)
-    nextVideo && !this.options.autoPlay && this.container.play()
+    this.startNextVideo && nextVideo && !this.options.autoPlay && this.container.play()
   }
 }
