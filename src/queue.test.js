@@ -140,5 +140,15 @@ describe('QueuePlugin', () => {
 
       expect(core.load).toHaveBeenCalledWith('http://some-cool-webpage/path/some-cool-video.mp4')
     })
+
+    test('autoplay the next video by default', () => {
+      const { core, container, plugin } = setupTest({ queue: { nextVideos: ['http://some-cool-webpage/path/some-cool-video.mp4'] } }, true)
+      core.activeContainer = container
+      jest.spyOn(core, 'load').mockImplementation(() => {})
+      jest.spyOn(container, 'play').mockImplementation(() => {})
+      plugin.playNextVideo()
+
+      expect(container.play).toHaveBeenCalledTimes(1)
+    })
   })
 })

@@ -30,5 +30,6 @@ export default class QueuePlugin extends CorePlugin {
   playNextVideo() {
     const nextVideo = this.videoQueue.shift()
     nextVideo && this.core.load(nextVideo)
+    nextVideo && !this.options.autoPlay && this.container.play()
   }
 }
