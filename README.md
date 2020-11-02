@@ -65,16 +65,16 @@ Defines if the queue plugin should play the media after it's loaded. The plugin 
 ### Plugin API
 | method | arguments | description |
 |--------|:---------:|-------------|
-| `plugin.appendVideo` | `URL` | Adds the video URL at the end of the queue. |
-| `plugin.prependVideo` | `URL` | Adds the video URL at the top of the queue. |
+| `plugin.appendVideo` | `URL` or `[URL, ...]` | Adds the video URL(s) at the end of the queue. |
+| `plugin.prependVideo` | `URL` or `[URL, ...]` | Adds the video URL(s) at the top of the queue. |
 | `plugin.popVideo` |  | Removes the video URL at the end of the queue. |
 | `plugin.shiftVideo` |  | Removes the video URL at the top of the queue. |
 
 ### Player API
 | method | arguments | description |
 |--------|:---------:|-------------|
-| `player.appendVideoOnQueue` | `URL` | A external interface to use `appendVideo` via player instance. |
-| `player.prependVideoOnQueue` | `URL` | A external interface to use `prependVideo` via player instance. |
+| `player.appendVideoOnQueue` | `URL` or `[URL, ...]` | A external interface to use `appendVideo` via player instance. |
+| `player.prependVideoOnQueue` | `URL` or `[URL, ...]` | A external interface to use `prependVideo` via player instance. |
 | `player.popVideoFromQueue` |  | A external interface to use `popVideo` via player instance. |
 | `player.shiftVideoFromQueue` |  | A external interface to use `shiftVideo` via player instance. |
 
