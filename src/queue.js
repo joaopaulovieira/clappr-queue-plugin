@@ -17,6 +17,7 @@ export default class QueuePlugin extends CorePlugin {
     return {
       appendVideoOnQueue: url => this.appendVideo(url),
       prependVideoOnQueue: url => this.prependVideo(url),
+      shiftVideoFromQueue: () => this.shiftVideo(),
     }
   }
 

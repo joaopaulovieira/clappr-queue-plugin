@@ -260,5 +260,15 @@ describe('QueuePlugin', () => {
 
       expect(plugin.videoQueue[0]).toEqual(videoURLExample2)
     })
+
+    test('exposes shiftVideo method for player scope with shiftVideoFromQueue name', () => {
+      const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
+      const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
+      const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1, videoURLExample2] } })
+      const externalInterface = plugin.getExternalInterface()
+      externalInterface.shiftVideoFromQueue()
+
+      expect(plugin.videoQueue).toEqual([videoURLExample2])
+    })
   })
 })
