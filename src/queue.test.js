@@ -200,7 +200,7 @@ describe('QueuePlugin', () => {
     test('adds url at the final of the queue', () => {
       const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
       const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
-      const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1] }})
+      const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1] } })
       plugin.appendVideo(videoURLExample2)
 
       expect(plugin.videoQueue[1]).toEqual(videoURLExample2)
@@ -211,7 +211,7 @@ describe('QueuePlugin', () => {
     test('adds url at the top of the queue', () => {
       const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
       const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
-      const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1] }})
+      const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1] } })
       plugin.prependVideo(videoURLExample2)
 
       expect(plugin.videoQueue[0]).toEqual(videoURLExample2)
@@ -222,7 +222,7 @@ describe('QueuePlugin', () => {
     test('exposes appendVideo method for player scope with appendVideoOnQueue name', () => {
       const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
       const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
-      const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1] }})
+      const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1] } })
       const externalInterface = plugin.getExternalInterface()
       externalInterface.appendVideoOnQueue(videoURLExample2)
 
@@ -232,7 +232,7 @@ describe('QueuePlugin', () => {
     test('exposes prependVideo method for player scope with prependVideoOnQueue name', () => {
       const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
       const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
-      const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1] }})
+      const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1] } })
       const externalInterface = plugin.getExternalInterface()
       externalInterface.prependVideoOnQueue(videoURLExample2)
 
