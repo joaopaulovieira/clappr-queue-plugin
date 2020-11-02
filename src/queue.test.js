@@ -195,4 +195,15 @@ describe('QueuePlugin', () => {
       expect(container.play).not.toHaveBeenCalled()
     })
   })
+
+  describe('appendVideo method', () => {
+    test('adds url at the final of the queue', () => {
+      const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
+      const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
+      const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1] }})
+      plugin.appendVideo(videoURLExample2)
+
+      expect(plugin.videoQueue[1]).toEqual(videoURLExample2)
+    })
+  })
 })
