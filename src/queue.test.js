@@ -270,5 +270,15 @@ describe('QueuePlugin', () => {
 
       expect(plugin.videoQueue).toEqual([videoURLExample2])
     })
+
+    test('exposes popVideo method for player scope with popVideoFromQueue name', () => {
+      const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
+      const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
+      const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1, videoURLExample2] } })
+      const externalInterface = plugin.getExternalInterface()
+      externalInterface.popVideoFromQueue()
+
+      expect(plugin.videoQueue).toEqual([videoURLExample1])
+    })
   })
 })
