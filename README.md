@@ -17,12 +17,14 @@
 - [Development](https://github.com/joaopaulovieira/clappr-queue-plugin#Development)
 
 ## Features
-- :clapper: Play videos in sequence:
-  - The first media in the queue starts immediately after the current media ends.
-- :memo: Set configs at plugin initialization:
-  - Define if the queue plugin plays the next video or just load.
-- :toolbox: Update video queue dynamically
-  - Use the plugin or player reference to add/remove videos in the queue.
+### :clapper: Play videos in sequence
+The first media in the queue starts immediately after the current media ends.
+
+### :memo: Set configs at plugin initialization
+Define if the queue plugin plays the next video or just load.
+
+### :toolbox: Update video queue dynamically
+Use the plugin or player reference to add/remove videos in the queue.
 
 ## Usage
 You can use it from JSDelivr:
