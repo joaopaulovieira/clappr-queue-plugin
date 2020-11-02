@@ -1,6 +1,6 @@
 {
   "name": "clappr-queue-plugin",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A queue plugin for Clappr Player to play videos in sequence.",
   "keywords": [
     "clappr",
