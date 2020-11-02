@@ -22,7 +22,7 @@
 - :memo: Set configs at plugin initialization:
   - Define if the queue plugin plays the next video or just load.
 - :toolbox: Update video queue dynamically
-  - Use the plugin or player reference to add videos in the queue.
+  - Use the plugin or player reference to add/remove videos in the queue.
 
 ## Usage
 You can use it from JSDelivr:
