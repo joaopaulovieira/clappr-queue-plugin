@@ -15,8 +15,8 @@ export default class QueuePlugin extends CorePlugin {
 
   getExternalInterface() {
     return {
-      appendVideoOnQueue: url => this.appendVideo(url),
-      prependVideoOnQueue: url => this.prependVideo(url),
+      appendVideoOnQueue: data => this.appendVideo(data),
+      prependVideoOnQueue: data => this.prependVideo(data),
       shiftVideoFromQueue: () => this.shiftVideo(),
       popVideoFromQueue: () => this.popVideo(),
     }
@@ -43,12 +43,16 @@ export default class QueuePlugin extends CorePlugin {
     this.startNextVideo && nextVideo && !this.options.autoPlay && this.container.play()
   }
 
-  appendVideo(url) {
-    this.videoQueue.push(url)
+  appendVideo(data) {
+    Array.isArray(data)
+      ? this.videoQueue.push(...data)
+      : this.videoQueue.push(data)
   }
 
-  prependVideo(url) {
-    this.videoQueue.unshift(url)
+  prependVideo(data) {
+    Array.isArray(data)
+      ? this.videoQueue.unshift(...data)
+      : this.videoQueue.unshift(data)
   }
 
   shiftVideo() {

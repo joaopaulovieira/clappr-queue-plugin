@@ -197,24 +197,40 @@ describe('QueuePlugin', () => {
   })
 
   describe('appendVideo method', () => {
+    const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
+    const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
+
     test('adds url at the final of the queue', () => {
-      const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
-      const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
       const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1] } })
       plugin.appendVideo(videoURLExample2)
 
       expect(plugin.videoQueue[1]).toEqual(videoURLExample2)
     })
+
+    test('supports adding a array of urls on the queue', () => {
+      const { plugin } = setupTest()
+      plugin.appendVideo([videoURLExample1, videoURLExample2])
+
+      expect(plugin.videoQueue).toEqual([videoURLExample1, videoURLExample2])
+    })
   })
 
   describe('prependVideo method', () => {
+    const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
+    const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
+
     test('adds url at the top of the queue', () => {
-      const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
-      const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
       const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1] } })
       plugin.prependVideo(videoURLExample2)
 
       expect(plugin.videoQueue[0]).toEqual(videoURLExample2)
+    })
+
+    test('supports adding a array of urls on the queue', () => {
+      const { plugin } = setupTest()
+      plugin.prependVideo([videoURLExample1, videoURLExample2])
+
+      expect(plugin.videoQueue).toEqual([videoURLExample1, videoURLExample2])
     })
   })
 
