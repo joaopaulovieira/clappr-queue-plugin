@@ -13,6 +13,7 @@
 - [Features](https://github.com/joaopaulovieira/clappr-queue-plugin#Features)
 - [Usage](https://github.com/joaopaulovieira/clappr-queue-plugin#Usage)
 - [Configuration](https://github.com/joaopaulovieira/clappr-queue-plugin#Configuration)
+- [API Documentation](https://github.com/joaopaulovieira/clappr-queue-plugin#API-Documentation)
 - [Development](https://github.com/joaopaulovieira/clappr-queue-plugin#Development)
 
 ## Features
@@ -57,8 +58,21 @@ An array where each item should be one video source URL.
 ### `autoPlayNextVideo {Boolean}`
 Defines if the queue plugin should play the media after it's loaded. The plugin does not mutate the Clappr option `autoPlay`.
 
-## Development
+## API Documentation
 
+### Plugin API
+| method | arguments | description |
+|--------|:---------:|-------------|
+| `plugin.appendVideo` | `URL` | Adds the video URL at the end of the queue. |
+| `plugin.prependVideo` | `URL` | Adds the video URL at the top of the queue. |
+
+### Player API
+| method | arguments | description |
+|--------|:---------:|-------------|
+| `player.appendVideoOnQueue` | `URL` | A external interface to use `appendVideo` via player instance. |
+| `player.prependVideoOnQueue` | `URL` | A external interface to use `prependVideo` via player instance. |
+
+## Development
 Install dependencies: `npm install`
 
 Run: `npm start`
