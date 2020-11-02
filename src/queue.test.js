@@ -217,4 +217,26 @@ describe('QueuePlugin', () => {
       expect(plugin.videoQueue[0]).toEqual(videoURLExample2)
     })
   })
+
+  describe('getExternalInterface method', () => {
+    test('exposes appendVideo method for player scope with appendVideoOnQueue name', () => {
+      const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
+      const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
+      const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1] }})
+      const externalInterface = plugin.getExternalInterface()
+      externalInterface.appendVideoOnQueue(videoURLExample2)
+
+      expect(plugin.videoQueue[1]).toEqual(videoURLExample2)
+    })
+
+    test('exposes prependVideo method for player scope with prependVideoOnQueue name', () => {
+      const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
+      const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
+      const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1] }})
+      const externalInterface = plugin.getExternalInterface()
+      externalInterface.prependVideoOnQueue(videoURLExample2)
+
+      expect(plugin.videoQueue[0]).toEqual(videoURLExample2)
+    })
+  })
 })

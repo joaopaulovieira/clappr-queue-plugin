@@ -13,6 +13,13 @@ export default class QueuePlugin extends CorePlugin {
     this.startNextVideo = typeof this.config.autoPlayNextVideo !== 'boolean' && true || this.config.autoPlayNextVideo
   }
 
+  getExternalInterface() {
+    return {
+      appendVideoOnQueue: url => this.appendVideo(url),
+      prependVideoOnQueue: url => this.prependVideo(url),
+    }
+  }
+
   bindEvents() {
     this.stopListening()
     this.listenTo(this.core, Events.CORE_ACTIVE_CONTAINER_CHANGED, this.onContainerChanged)
