@@ -48,4 +48,8 @@ export default class QueuePlugin extends CorePlugin {
   prependVideo(url) {
     this.videoQueue.unshift(url)
   }
+
+  shiftVideo() {
+    this.videoQueue.shift()
+  }
 }

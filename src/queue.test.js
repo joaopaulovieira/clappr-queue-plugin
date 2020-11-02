@@ -218,6 +218,17 @@ describe('QueuePlugin', () => {
     })
   })
 
+  describe('shiftVideo method', () => {
+    test('removes url at the top of the queue', () => {
+      const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
+      const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
+      const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1, videoURLExample2] } })
+      plugin.shiftVideo()
+
+      expect(plugin.videoQueue).toEqual([videoURLExample2])
+    })
+  })
+
   describe('getExternalInterface method', () => {
     test('exposes appendVideo method for player scope with appendVideoOnQueue name', () => {
       const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
