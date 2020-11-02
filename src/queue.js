@@ -52,4 +52,8 @@ export default class QueuePlugin extends CorePlugin {
   shiftVideo() {
     this.videoQueue.shift()
   }
+
+  popVideo() {
+    this.videoQueue.pop()
+  }
 }

@@ -229,6 +229,17 @@ describe('QueuePlugin', () => {
     })
   })
 
+  describe('popVideo method', () => {
+    test('removes url at the end of the queue', () => {
+      const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
+      const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
+      const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1, videoURLExample2] } })
+      plugin.popVideo()
+
+      expect(plugin.videoQueue).toEqual([videoURLExample1])
+    })
+  })
+
   describe('getExternalInterface method', () => {
     test('exposes appendVideo method for player scope with appendVideoOnQueue name', () => {
       const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
