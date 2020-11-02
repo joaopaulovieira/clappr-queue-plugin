@@ -206,4 +206,15 @@ describe('QueuePlugin', () => {
       expect(plugin.videoQueue[1]).toEqual(videoURLExample2)
     })
   })
+
+  describe('prependVideo method', () => {
+    test('adds url at the top of the queue', () => {
+      const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
+      const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
+      const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1] }})
+      plugin.prependVideo(videoURLExample2)
+
+      expect(plugin.videoQueue[0]).toEqual(videoURLExample2)
+    })
+  })
 })
