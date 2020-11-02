@@ -1,7 +1,7 @@
-<!-- [![](https://data.jsdelivr.com/v1/package/npm/clappr-context-menu-plugin/badge)](https://www.jsdelivr.com/package/npm/clappr-context-menu-plugin) -->
-<!-- [![](https://img.shields.io/npm/v/clappr-context-menu-plugin.svg?style=flat-square)](https://npmjs.org/package/clappr-context-menu-plugin) -->
-<!-- [![](https://img.shields.io/npm/dt/clappr-context-menu-plugin.svg?style=flat-square)](https://npmjs.org/package/clappr-context-menu-plugin) -->
-<!-- [![npm bundle size](https://img.shields.io/bundlephobia/min/clappr-context-menu-plugin?style=flat-square)](https://bundlephobia.com/result?p=clappr-context-menu-plugin) -->
+[![](https://data.jsdelivr.com/v1/package/npm/clappr-queue-plugin/badge)](https://www.jsdelivr.com/package/npm/clappr-queue-plugin)
+[![](https://img.shields.io/npm/v/clappr-queue-plugin.svg?style=flat-square)](https://npmjs.org/package/clappr-queue-plugin)
+[![](https://img.shields.io/npm/dt/clappr-queue-plugin.svg?style=flat-square)](https://npmjs.org/package/clappr-queue-plugin)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/clappr-queue-plugin?style=flat-square)](https://bundlephobia.com/result?p=clappr-queue-plugin)
 ![Coveralls github](https://img.shields.io/coveralls/github/joaopaulovieira/clappr-queue-plugin?style=flat-square)
 ![Travis (.com)](https://img.shields.io/travis/com/joaopaulovieira/clappr-queue-plugin?style=flat-square)
 [![](https://img.shields.io/github/license/joaopaulovieira/clappr-context-menu-plugin?style=flat-square)](https://github.com/joaopaulovieira/clappr-context-menu-plugin/blob/master/LICENSE)
