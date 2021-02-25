@@ -267,6 +267,16 @@ describe('QueuePlugin', () => {
   })
 
   describe('getExternalInterface method', () => {
+    test('exposes videoQueue getter for player scope with getVideoQueue name', () => {
+      const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
+      const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1] } })
+      const externalInterface = plugin.getExternalInterface()
+      const videoQueue = externalInterface.getVideoQueue()
+
+      expect(videoQueue).toEqual(plugin.videoQueue)
+      expect(videoQueue[0]).toEqual(videoURLExample1)
+    })
+
     test('exposes appendVideo method for player scope with appendVideoOnQueue name', () => {
       const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
       const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'

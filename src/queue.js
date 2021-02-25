@@ -17,6 +17,7 @@ export default class QueuePlugin extends CorePlugin {
 
   getExternalInterface() {
     return {
+      getVideoQueue: () => this.videoQueue,
       appendVideoOnQueue: data => this.appendVideo(data),
       prependVideoOnQueue: data => this.prependVideo(data),
       shiftVideoFromQueue: () => this.shiftVideo(),
