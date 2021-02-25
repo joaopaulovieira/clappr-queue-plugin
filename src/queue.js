@@ -7,9 +7,11 @@ export default class QueuePlugin extends CorePlugin {
 
   get config() { return this.options.queue || {} }
 
+  get videoQueue() { return this._videoQueue }
+
   constructor(core) {
     super(core)
-    this.videoQueue = this.config.nextVideos || []
+    this._videoQueue = this.config.nextVideos || []
     this.startNextVideo = typeof this.config.autoPlayNextVideo !== 'boolean' && true || this.config.autoPlayNextVideo
   }
 
@@ -38,28 +40,28 @@ export default class QueuePlugin extends CorePlugin {
   }
 
   playNextVideo() {
-    const nextVideo = this.videoQueue.shift()
+    const nextVideo = this._videoQueue.shift()
     nextVideo && this.core.load(nextVideo)
     this.startNextVideo && nextVideo && !this.options.autoPlay && this.container.play()
   }
 
   appendVideo(data) {
     Array.isArray(data)
-      ? this.videoQueue.push(...data)
-      : this.videoQueue.push(data)
+      ? this._videoQueue.push(...data)
+      : this._videoQueue.push(data)
   }
 
   prependVideo(data) {
     Array.isArray(data)
-      ? this.videoQueue.unshift(...data)
-      : this.videoQueue.unshift(data)
+      ? this._videoQueue.unshift(...data)
+      : this._videoQueue.unshift(data)
   }
 
   shiftVideo() {
-    this.videoQueue.shift()
+    this._videoQueue.shift()
   }
 
   popVideo() {
-    this.videoQueue.pop()
+    this._videoQueue.pop()
   }
 }

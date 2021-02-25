@@ -48,15 +48,25 @@ describe('QueuePlugin', () => {
     })
   })
 
+  test('have a getter called videoQueue', () => {
+    const { plugin } = setupTest()
+    expect(Object.getOwnPropertyDescriptor(Object.getPrototypeOf(plugin), 'videoQueue').get).toBeTruthy()
+  })
+
+  test('videoQueue getter returns _videoQueue value', () => {
+    const { plugin } = setupTest()
+    expect(plugin.videoQueue).toEqual(plugin._videoQueue)
+  })
+
   describe('constructor', () => {
-    test('sets videoQueue property value based on nextVideos config', () => {
+    test('sets _videoQueue property value based on nextVideos config', () => {
       const { plugin } = setupTest({ queue: { nextVideos: ['http://some-cool-webpage/path/some-cool-video.mp4'] } })
-      expect(plugin.videoQueue).toEqual(plugin.config.nextVideos)
+      expect(plugin._videoQueue).toEqual(plugin.config.nextVideos)
     })
 
     test('sets videoQueue property default value if nextVideos config don\'t exists', () => {
       const { plugin } = setupTest({ queue: {} })
-      expect(plugin.videoQueue).toEqual([])
+      expect(plugin._videoQueue).toEqual([])
     })
 
     test('sets startNextVideo property value based on autoPlayNextVideo config', () => {
