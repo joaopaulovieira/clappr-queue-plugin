@@ -10,6 +10,7 @@ import size from 'rollup-plugin-sizes'
 import visualize from 'rollup-plugin-visualizer'
 import { terser } from 'rollup-plugin-terser'
 import pkg from './package.json'
+import babelConfig from './babel.config.json'
 
 const dev = !!process.env.DEV
 const analyzeBundle = !!process.env.ANALYZE_BUNDLE
@@ -17,7 +18,7 @@ const minimize = !!process.env.MINIMIZE
 
 const babelPluginForUMDBundle = createBabelInputPluginFactory()
 const babelPluginForESMBundle = createBabelInputPluginFactory()
-const babelPluginOptions = { presets: [['@babel/preset-env', { modules: false }]], exclude: 'node_modules/**', babelHelpers: 'bundled' }
+const babelPluginOptions = { ...babelConfig, exclude: 'node_modules/**', babelHelpers: 'bundled' }
 
 const plugins = [
   html(),
