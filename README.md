@@ -72,6 +72,10 @@ Defines if the queue plugin should play the media after it's loaded. The plugin 
 | `plugin.popVideo` |  | Removes the video URL at the end of the queue. |
 | `plugin.shiftVideo` |  | Removes the video URL at the top of the queue. |
 
+| getter | description | Response |
+|--------|-------------|:--------:|
+| `plugin.videoQueue` | Returns the video queue. | `[URL, ...]` |
+
 ### Player API
 | method | arguments | description |
 |--------|:---------:|-------------|
@@ -79,6 +83,10 @@ Defines if the queue plugin should play the media after it's loaded. The plugin 
 | `player.prependVideoOnQueue` | `URL` or `[URL, ...]` | A external interface to use `prependVideo` via player instance. |
 | `player.popVideoFromQueue` |  | A external interface to use `popVideo` via player instance. |
 | `player.shiftVideoFromQueue` |  | A external interface to use `shiftVideo` via player instance. |
+
+| getter | description | Response |
+|--------|-------------|:--------:|
+| `player.getVideoQueue` | Returns the video queue. | `[URL, ...]` |
 
 ## Development
 Install dependencies: `npm install`
