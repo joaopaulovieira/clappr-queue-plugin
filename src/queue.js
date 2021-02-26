@@ -22,6 +22,7 @@ export default class QueuePlugin extends CorePlugin {
       prependVideoOnQueue: data => this.prependVideo(data),
       shiftVideoFromQueue: () => this.shiftVideo(),
       popVideoFromQueue: () => this.popVideo(),
+      playNextVideoOnQueue: () => this.playNextVideo(),
     }
   }
 

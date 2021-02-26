@@ -364,5 +364,16 @@ describe('QueuePlugin', () => {
 
       expect(plugin.videoQueue).toEqual([videoURLExample1])
     })
+
+    test('exposes playNextVideo method for player scope with playNextVideoOnQueue name', () => {
+      const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1, videoURLExample2] } })
+      const externalInterface = plugin.getExternalInterface()
+      jest.spyOn(plugin, 'playNextVideo')
+      jest.spyOn(plugin, 'playVideo').mockImplementation(() => {})
+      externalInterface.playNextVideoOnQueue()
+
+      expect(plugin.playNextVideo).toHaveBeenCalledTimes(1)
+      expect(plugin.playVideo).toHaveBeenCalledWith(videoURLExample1)
+    })
   })
 })
