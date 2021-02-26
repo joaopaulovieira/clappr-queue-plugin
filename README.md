@@ -18,7 +18,7 @@
 
 ## Features
 ### :clapper: Play videos in sequence
-The first media in the queue starts immediately after the current media ends.
+The first media in the queue starts immediately after the current media ends. The plugin provides one API to play any media in the queue in any order you want.
 
 ### :memo: Set configs at plugin initialization
 Define if the queue plugin plays the next video or just load.
