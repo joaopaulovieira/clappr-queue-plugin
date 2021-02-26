@@ -389,5 +389,16 @@ describe('QueuePlugin', () => {
       expect(plugin.playNextVideo).toHaveBeenCalledTimes(1)
       expect(plugin.playVideo).toHaveBeenCalledWith(videoURLExample1)
     })
+
+    test('exposes playPosition method for player scope with playQueuePosition name', () => {
+      const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1, videoURLExample2] } })
+      const externalInterface = plugin.getExternalInterface()
+      jest.spyOn(plugin, 'playPosition')
+      jest.spyOn(plugin, 'playVideo').mockImplementation(() => {})
+      externalInterface.playQueuePosition(1)
+
+      expect(plugin.playPosition).toHaveBeenCalledWith(1)
+      expect(plugin.playVideo).toHaveBeenCalledWith(videoURLExample2)
+    })
   })
 })

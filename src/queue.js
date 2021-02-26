@@ -23,6 +23,7 @@ export default class QueuePlugin extends CorePlugin {
       shiftVideoFromQueue: () => this.shiftVideo(),
       popVideoFromQueue: () => this.popVideo(),
       playNextVideoOnQueue: () => this.playNextVideo(),
+      playQueuePosition: index => this.playPosition(index),
     }
   }
 
