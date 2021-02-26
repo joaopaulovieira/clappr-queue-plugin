@@ -24,6 +24,7 @@ export default class QueuePlugin extends CorePlugin {
       popVideoFromQueue: () => this.popVideo(),
       playNextVideoOnQueue: () => this.playNextVideo(),
       playQueuePosition: index => this.playPosition(index),
+      playQueueItem: media => this.playItem(media),
     }
   }
 
