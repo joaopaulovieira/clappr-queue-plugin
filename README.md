@@ -73,6 +73,7 @@ Defines if the queue plugin should play the media after it's loaded. The plugin 
 | `plugin.shiftVideo` |  | Removes the video URL at the top of the queue. |
 | `plugin.playNextVideo` |  | Load and play (accordingly `autoPlayNextVideo` value) the video URL at the top of the queue. |
 | `plugin.playQueuePosition` | `Number (position of the queue array)` | Load and play (accordingly `autoPlayNextVideo` value) the video URL related to the position in the queue. |
+| `plugin.playQueueItem` | `URL` | Load and play (accordingly `autoPlayNextVideo` value) if the video URL is registered into the queue. |
 
 | getter | description | Response |
 |--------|-------------|:--------:|
