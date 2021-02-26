@@ -71,6 +71,7 @@ Defines if the queue plugin should play the media after it's loaded. The plugin 
 | `plugin.prependVideo` | `URL` or `[URL, ...]` | Adds the video URL(s) at the top of the queue. |
 | `plugin.popVideo` |  | Removes the video URL at the end of the queue. |
 | `plugin.shiftVideo` |  | Removes the video URL at the top of the queue. |
+| `plugin.playNextVideo` |  | Load and play (accordingly `autoPlayNextVideo` value) the video URL at the top of the queue. |
 
 | getter | description | Response |
 |--------|-------------|:--------:|
