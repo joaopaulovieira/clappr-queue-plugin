@@ -321,8 +321,10 @@ describe('QueuePlugin', () => {
   })
 
   describe('getExternalInterface method', () => {
+    const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
+    const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
+
     test('exposes videoQueue getter for player scope with getVideoQueue name', () => {
-      const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
       const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1] } })
       const externalInterface = plugin.getExternalInterface()
       const videoQueue = externalInterface.getVideoQueue()
@@ -332,8 +334,6 @@ describe('QueuePlugin', () => {
     })
 
     test('exposes appendVideo method for player scope with appendVideoOnQueue name', () => {
-      const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
-      const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
       const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1] } })
       const externalInterface = plugin.getExternalInterface()
       externalInterface.appendVideoOnQueue(videoURLExample2)
@@ -342,8 +342,6 @@ describe('QueuePlugin', () => {
     })
 
     test('exposes prependVideo method for player scope with prependVideoOnQueue name', () => {
-      const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
-      const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
       const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1] } })
       const externalInterface = plugin.getExternalInterface()
       externalInterface.prependVideoOnQueue(videoURLExample2)
@@ -352,8 +350,6 @@ describe('QueuePlugin', () => {
     })
 
     test('exposes shiftVideo method for player scope with shiftVideoFromQueue name', () => {
-      const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
-      const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
       const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1, videoURLExample2] } })
       const externalInterface = plugin.getExternalInterface()
       externalInterface.shiftVideoFromQueue()
@@ -362,8 +358,6 @@ describe('QueuePlugin', () => {
     })
 
     test('exposes popVideo method for player scope with popVideoFromQueue name', () => {
-      const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
-      const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
       const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1, videoURLExample2] } })
       const externalInterface = plugin.getExternalInterface()
       externalInterface.popVideoFromQueue()
