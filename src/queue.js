@@ -46,12 +46,12 @@ export default class QueuePlugin extends CorePlugin {
     this.playVideo(video)
   }
 
-  playQueueItem(media) {
+  playItem(media) {
     const videoPositionOnQueue = this._videoQueue.findIndex(item => item === media)
-    this.playQueuePosition(videoPositionOnQueue)
+    this.playPosition(videoPositionOnQueue)
   }
 
-  playQueuePosition(position) {
+  playPosition(position) {
     if (position < 0) return
     const videosList = this._videoQueue.splice(position, 1)
     this.playVideo(videosList[0])

@@ -228,7 +228,7 @@ describe('QueuePlugin', () => {
     })
   })
 
-  describe('playQueuePosition method', () => {
+  describe('playPosition method', () => {
     const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
     const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
 
@@ -236,7 +236,7 @@ describe('QueuePlugin', () => {
       const { core, container, plugin } = setupTest({ queue: { nextVideos: [videoURLExample1, videoURLExample2] } }, true)
       core.activeContainer = container
       jest.spyOn(plugin, 'playVideo').mockImplementation(() => {})
-      plugin.playQueuePosition(1)
+      plugin.playPosition(1)
 
       expect(plugin.playVideo).toHaveBeenCalledWith(videoURLExample2)
     })
@@ -245,7 +245,7 @@ describe('QueuePlugin', () => {
       const { core, container, plugin } = setupTest({ queue: { nextVideos: [videoURLExample1, videoURLExample2] } }, true)
       core.activeContainer = container
       jest.spyOn(plugin, 'playVideo').mockImplementation(() => {})
-      plugin.playQueuePosition(-1)
+      plugin.playPosition(-1)
 
       expect(plugin.playVideo).not.toHaveBeenCalled()
     })
@@ -254,23 +254,23 @@ describe('QueuePlugin', () => {
       const { core, container, plugin } = setupTest({ queue: { nextVideos: [videoURLExample1, videoURLExample2] } }, true)
       core.activeContainer = container
       jest.spyOn(plugin, 'playVideo').mockImplementation(() => {})
-      plugin.playQueuePosition(1)
+      plugin.playPosition(1)
 
       expect(plugin.videoQueue).toEqual([videoURLExample1])
     })
   })
 
-  describe('playQueueItem method', () => {
+  describe('playItem method', () => {
     const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
     const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
 
-    test('calls playQueuePosition with the queue position of the requested media', () => {
+    test('calls playPosition with the queue position of the requested media', () => {
       const { core, container, plugin } = setupTest({ queue: { nextVideos: [videoURLExample1, videoURLExample2] } }, true)
       core.activeContainer = container
-      jest.spyOn(plugin, 'playQueuePosition').mockImplementation(() => {})
-      plugin.playQueueItem(videoURLExample2)
+      jest.spyOn(plugin, 'playPosition').mockImplementation(() => {})
+      plugin.playItem(videoURLExample2)
 
-      expect(plugin.playQueuePosition).toHaveBeenCalledWith(1)
+      expect(plugin.playPosition).toHaveBeenCalledWith(1)
     })
   })
 
