@@ -45,6 +45,12 @@ export default class QueuePlugin extends CorePlugin {
     this.playVideo(video)
   }
 
+  playQueuePosition(position) {
+    if (position < 0) return
+    const videosList = this._videoQueue.splice(position, 1)
+    this.playVideo(videosList[0])
+  }
+
   playVideo(video) {
     video && this.core.load(video)
     this.startNextVideo && video && !this.options.autoPlay && this.container.play()

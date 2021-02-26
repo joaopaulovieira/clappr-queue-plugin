@@ -228,6 +228,38 @@ describe('QueuePlugin', () => {
     })
   })
 
+  describe('playQueuePosition method', () => {
+    const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
+    const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
+
+    test('calls playVideo with the media of the requested queue position', () => {
+      const { core, container, plugin } = setupTest({ queue: { nextVideos: [videoURLExample1, videoURLExample2] } }, true)
+      core.activeContainer = container
+      jest.spyOn(plugin, 'playVideo').mockImplementation(() => {})
+      plugin.playQueuePosition(1)
+
+      expect(plugin.playVideo).toHaveBeenCalledWith(videoURLExample2)
+    })
+
+    test('ignores invalid requested queue position', () => {
+      const { core, container, plugin } = setupTest({ queue: { nextVideos: [videoURLExample1, videoURLExample2] } }, true)
+      core.activeContainer = container
+      jest.spyOn(plugin, 'playVideo').mockImplementation(() => {})
+      plugin.playQueuePosition(-1)
+
+      expect(plugin.playVideo).not.toHaveBeenCalled()
+    })
+
+    test('removes the media of the requested queue position from the videoQueue array', () => {
+      const { core, container, plugin } = setupTest({ queue: { nextVideos: [videoURLExample1, videoURLExample2] } }, true)
+      core.activeContainer = container
+      jest.spyOn(plugin, 'playVideo').mockImplementation(() => {})
+      plugin.playQueuePosition(1)
+
+      expect(plugin.videoQueue).toEqual([videoURLExample1])
+    })
+  })
+
   describe('appendVideo method', () => {
     const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
     const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
