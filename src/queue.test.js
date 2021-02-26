@@ -163,29 +163,51 @@ describe('QueuePlugin', () => {
         },
       }, true)
       core.activeContainer = container
-      jest.spyOn(core, 'load').mockImplementation(() => {})
-      jest.spyOn(container, 'play').mockImplementation(() => {})
+      jest.spyOn(plugin, 'playVideo').mockImplementation(() => {})
       plugin.playNextVideo()
 
       expect(plugin.videoQueue).toEqual(['http://another-cool-webpage/path/another-cool-video.mp4'])
     })
 
-    test('loads the first item on videoQueue array', () => {
-      const { core, container, plugin } = setupTest({ queue: { nextVideos: ['http://some-cool-webpage/path/some-cool-video.mp4'] } }, true)
+    test('calls playVideo with requested media', () => {
+      const media = 'http://some-cool-webpage/path/some-cool-video.mp4'
+      const { core, container, plugin } = setupTest({ queue: { nextVideos: [media] } }, true)
+      core.activeContainer = container
+      jest.spyOn(plugin, 'playVideo').mockImplementation(() => {})
+      plugin.playNextVideo()
+
+      expect(plugin.playVideo).toHaveBeenCalledWith(media)
+    })
+  })
+
+  describe('playVideo method', () => {
+    const media = 'http://some-cool-webpage/path/some-cool-video.mp4'
+
+    test('ignores one invalid received media', () => {
+      const { core, container, plugin } = setupTest({}, true)
+      core.activeContainer = container
+      jest.spyOn(core, 'load')
+      plugin.playVideo(null)
+
+      expect(core.load).not.toHaveBeenCalled()
+    })
+
+    test('loads the received media', () => {
+      const { core, container, plugin } = setupTest({ queue: { nextVideos: [media] } }, true)
       core.activeContainer = container
       jest.spyOn(core, 'load').mockImplementation(() => {})
       jest.spyOn(container, 'play').mockImplementation(() => {})
-      plugin.playNextVideo()
+      plugin.playVideo(media)
 
-      expect(core.load).toHaveBeenCalledWith('http://some-cool-webpage/path/some-cool-video.mp4')
+      expect(core.load).toHaveBeenCalledWith(media)
     })
 
     test('autoplay the next video by default', () => {
-      const { core, container, plugin } = setupTest({ queue: { nextVideos: ['http://some-cool-webpage/path/some-cool-video.mp4'] } }, true)
+      const { core, container, plugin } = setupTest({ queue: { nextVideos: [media] } }, true)
       core.activeContainer = container
       jest.spyOn(core, 'load').mockImplementation(() => {})
       jest.spyOn(container, 'play').mockImplementation(() => {})
-      plugin.playNextVideo()
+      plugin.playVideo(media)
 
       expect(container.play).toHaveBeenCalledTimes(1)
     })
@@ -193,14 +215,14 @@ describe('QueuePlugin', () => {
     test('avoid autoplay the next video if autoPlayNextVideo config is false', () => {
       const { core, container, plugin } = setupTest({
         queue: {
-          nextVideos: ['http://some-cool-webpage/path/some-cool-video.mp4'],
+          nextVideos: [media],
           autoPlayNextVideo: false,
         },
       }, true)
       core.activeContainer = container
       jest.spyOn(core, 'load').mockImplementation(() => {})
       jest.spyOn(container, 'play').mockImplementation(() => {})
-      plugin.playNextVideo()
+      plugin.playVideo()
 
       expect(container.play).not.toHaveBeenCalled()
     })

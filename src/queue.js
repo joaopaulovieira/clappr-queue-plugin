@@ -41,9 +41,13 @@ export default class QueuePlugin extends CorePlugin {
   }
 
   playNextVideo() {
-    const nextVideo = this._videoQueue.shift()
-    nextVideo && this.core.load(nextVideo)
-    this.startNextVideo && nextVideo && !this.options.autoPlay && this.container.play()
+    const video = this._videoQueue.shift()
+    this.playVideo(video)
+  }
+
+  playVideo(video) {
+    video && this.core.load(video)
+    this.startNextVideo && video && !this.options.autoPlay && this.container.play()
   }
 
   appendVideo(data) {
