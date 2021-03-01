@@ -90,6 +90,7 @@ Defines if the queue plugin should play the media after it's loaded. The plugin 
 | `player.playNextVideoOnQueue` |  | A external interface to use `playNextVideo` via player instance. |
 | `plugin.playQueuePosition` | `Number (position of the queue array)` | A external interface to use `playPosition` via player instance. |
 | `plugin.playQueueItem` | `URL` | A external interface to use `playItem` via player instance. |
+| `plugin.shuffleQueueItems` |  | A external interface to use `shuffleItems` via player instance. |
 
 | getter | description | Response |
 |--------|-------------|:--------:|
