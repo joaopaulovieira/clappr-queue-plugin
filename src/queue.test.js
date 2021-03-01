@@ -394,6 +394,15 @@ describe('QueuePlugin', () => {
       expect(plugin.playPosition).toHaveBeenCalledWith(1)
       expect(plugin.playVideo).toHaveBeenCalledWith(videoURLExample2)
     })
+
+    test('exposes shuffleItems method for player scope with shuffleQueueItems name', () => {
+      const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1, videoURLExample2] } })
+      const externalInterface = plugin.getExternalInterface()
+      jest.spyOn(plugin, 'shuffleItems')
+      externalInterface.shuffleQueueItems()
+
+      expect(plugin.shuffleItems).toHaveBeenCalledTimes(1)
+    })
   })
 
   test('shuffleItems method reorder items on the queue randomly', () => {

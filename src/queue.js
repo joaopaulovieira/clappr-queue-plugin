@@ -25,6 +25,7 @@ export default class QueuePlugin extends CorePlugin {
       playNextVideoOnQueue: () => this.playNextVideo(),
       playQueuePosition: index => this.playPosition(index),
       playQueueItem: media => this.playItem(media),
+      shuffleQueueItems: () => this.shuffleItems(),
     }
   }
 
