@@ -1,6 +1,9 @@
 import { Events, Core, Container, Playback, version } from '@clappr/core'
 import QueuePlugin from './queue'
 
+const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
+const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
+
 const setupTest = (options = {}, fullSetup = false) => {
   const core = new Core(options)
   const plugin = new QueuePlugin(core)
@@ -181,8 +184,6 @@ describe('QueuePlugin', () => {
   })
 
   describe('playVideo method', () => {
-    const media = 'http://some-cool-webpage/path/some-cool-video.mp4'
-
     test('ignores one invalid received media', () => {
       const { core, container, plugin } = setupTest({}, true)
       core.activeContainer = container
@@ -193,21 +194,21 @@ describe('QueuePlugin', () => {
     })
 
     test('loads the received media', () => {
-      const { core, container, plugin } = setupTest({ queue: { nextVideos: [media] } }, true)
+      const { core, container, plugin } = setupTest({ queue: { nextVideos: [videoURLExample1] } }, true)
       core.activeContainer = container
       jest.spyOn(core, 'load').mockImplementation(() => {})
       jest.spyOn(container, 'play').mockImplementation(() => {})
-      plugin.playVideo(media)
+      plugin.playVideo(videoURLExample1)
 
-      expect(core.load).toHaveBeenCalledWith(media)
+      expect(core.load).toHaveBeenCalledWith(videoURLExample1)
     })
 
     test('autoplay the next video by default', () => {
-      const { core, container, plugin } = setupTest({ queue: { nextVideos: [media] } }, true)
+      const { core, container, plugin } = setupTest({ queue: { nextVideos: [videoURLExample1] } }, true)
       core.activeContainer = container
       jest.spyOn(core, 'load').mockImplementation(() => {})
       jest.spyOn(container, 'play').mockImplementation(() => {})
-      plugin.playVideo(media)
+      plugin.playVideo(videoURLExample1)
 
       expect(container.play).toHaveBeenCalledTimes(1)
     })
@@ -215,7 +216,7 @@ describe('QueuePlugin', () => {
     test('avoid autoplay the next video if autoPlayNextVideo config is false', () => {
       const { core, container, plugin } = setupTest({
         queue: {
-          nextVideos: [media],
+          nextVideos: [videoURLExample1],
           autoPlayNextVideo: false,
         },
       }, true)
@@ -229,9 +230,6 @@ describe('QueuePlugin', () => {
   })
 
   describe('playPosition method', () => {
-    const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
-    const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
-
     test('calls playVideo with the media of the requested queue position', () => {
       const { core, container, plugin } = setupTest({ queue: { nextVideos: [videoURLExample1, videoURLExample2] } }, true)
       core.activeContainer = container
@@ -261,9 +259,6 @@ describe('QueuePlugin', () => {
   })
 
   describe('playItem method', () => {
-    const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
-    const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
-
     test('calls playPosition with the queue position of the requested media', () => {
       const { core, container, plugin } = setupTest({ queue: { nextVideos: [videoURLExample1, videoURLExample2] } }, true)
       core.activeContainer = container
@@ -275,9 +270,6 @@ describe('QueuePlugin', () => {
   })
 
   describe('appendVideo method', () => {
-    const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
-    const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
-
     test('adds url at the final of the queue', () => {
       const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1] } })
       plugin.appendVideo(videoURLExample2)
@@ -294,9 +286,6 @@ describe('QueuePlugin', () => {
   })
 
   describe('prependVideo method', () => {
-    const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
-    const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
-
     test('adds url at the top of the queue', () => {
       const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1] } })
       plugin.prependVideo(videoURLExample2)
@@ -314,8 +303,6 @@ describe('QueuePlugin', () => {
 
   describe('shiftVideo method', () => {
     test('removes url at the top of the queue', () => {
-      const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
-      const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
       const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1, videoURLExample2] } })
       plugin.shiftVideo()
 
@@ -325,8 +312,6 @@ describe('QueuePlugin', () => {
 
   describe('popVideo method', () => {
     test('removes url at the end of the queue', () => {
-      const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
-      const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
       const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1, videoURLExample2] } })
       plugin.popVideo()
 
@@ -335,9 +320,6 @@ describe('QueuePlugin', () => {
   })
 
   describe('getExternalInterface method', () => {
-    const videoURLExample1 = 'http://cool-webpage/path/first-cool-video.mp4'
-    const videoURLExample2 = 'http://another-webpage/path/first-cool-video.mp4'
-
     test('exposes videoQueue getter for player scope with getVideoQueue name', () => {
       const { plugin } = setupTest({ queue: { nextVideos: [videoURLExample1] } })
       const externalInterface = plugin.getExternalInterface()
