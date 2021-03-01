@@ -74,6 +74,7 @@ Defines if the queue plugin should play the media after it's loaded. The plugin 
 | `plugin.playNextVideo` |  | Load and play (accordingly `autoPlayNextVideo` value) the video URL at the top of the queue. |
 | `plugin.playPosition` | `Number (position of the queue array)` | Load and play (accordingly `autoPlayNextVideo` value) the video URL related to the position in the queue. |
 | `plugin.playItem` | `URL` | Load and play (accordingly `autoPlayNextVideo` value) if the video URL is registered into the queue. |
+| `plugin.shuffleItems` |  | Sort the items in the queue randomly. |
 
 | getter | description | Response |
 |--------|-------------|:--------:|
