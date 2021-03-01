@@ -83,4 +83,8 @@ export default class QueuePlugin extends CorePlugin {
   popVideo() {
     this._videoQueue.pop()
   }
+
+  shuffleItems() {
+    this._videoQueue = this._videoQueue.sort(() => Math.random() - 0.5)
+  }
 }

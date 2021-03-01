@@ -173,13 +173,12 @@ describe('QueuePlugin', () => {
     })
 
     test('calls playVideo with requested media', () => {
-      const media = 'http://some-cool-webpage/path/some-cool-video.mp4'
-      const { core, container, plugin } = setupTest({ queue: { nextVideos: [media] } }, true)
+      const { core, container, plugin } = setupTest({ queue: { nextVideos: [videoURLExample1] } }, true)
       core.activeContainer = container
       jest.spyOn(plugin, 'playVideo').mockImplementation(() => {})
       plugin.playNextVideo()
 
-      expect(plugin.playVideo).toHaveBeenCalledWith(media)
+      expect(plugin.playVideo).toHaveBeenCalledWith(videoURLExample1)
     })
   })
 
@@ -395,5 +394,22 @@ describe('QueuePlugin', () => {
       expect(plugin.playPosition).toHaveBeenCalledWith(1)
       expect(plugin.playVideo).toHaveBeenCalledWith(videoURLExample2)
     })
+  })
+
+  test('shuffleItems method reorder items on the queue randomly', () => {
+    const { plugin } = setupTest({
+      queue: {
+        nextVideos: [
+          videoURLExample1,
+          videoURLExample2,
+          'http://cool-webpage/path/some-cool-video.mp4',
+          'http://another-cool-webpage/path/another-cool-video.mp4',
+        ],
+      },
+    }, true)
+    const initialQueue = [...plugin.videoQueue]
+    plugin.shuffleItems()
+
+    expect(plugin.videoQueue).not.toEqual(initialQueue)
   })
 })
