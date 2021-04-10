@@ -1,10 +1,6 @@
 module.exports = {
   verbose: true,
-  transform: {
-    '^.+\\.js$': 'babel-jest',
-    '^.+\\.html$': '<rootDir>/src/__mocks__/htmlMock.js',
-  },
-  moduleNameMapper: { '\\.(scss)$': '<rootDir>/src/__mocks__/styleMock.js' },
+  transform: { '^.+\\.js$': 'babel-jest' },
   collectCoverageFrom: ['src/*.js'],
   coverageThreshold: {
     global: {
