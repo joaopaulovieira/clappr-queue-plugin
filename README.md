@@ -32,19 +32,25 @@ You can use it from JSDelivr:
 https://cdn.jsdelivr.net/npm/clappr-queue-plugin@latest/dist/clappr-queue-plugin.min.js
 ```
 or as an npm package:
+```properties
+# Using yarn
+yarn add @joaopaulo.vieira/clappr-media-control-plugin
+
+# Using npm
+npm i @joaopaulo.vieira/clappr-media-control-plugin
 ```
-npm install clappr-queue-plugin
-```
-Then just add `QueuePlugin` into the list of plugins of your player instance
+
+Then just add the `QueuePlugin` into the list of plugins of your player instance and set the media(s) to play in sequence on `queue.nextVideos` config:
 ```javascript
 var player = new Clappr.Player({
   source: 'http://your.video/here.mp4',
   plugins: [QueuePlugin],
+  queue: { nextVideos: ['http://another.video/here.mp4'] },
 });
 ```
 
 ## Configuration
-The options for the plugin go in the `queue` property as shown below
+The options for the plugin go in the `queue` property as shown below:
 ```javascript
 var player = new Clappr.Player({
   source: 'http://your.video/here.mp4',
