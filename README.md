@@ -34,10 +34,10 @@ https://cdn.jsdelivr.net/npm/clappr-queue-plugin@latest/dist/clappr-queue-plugin
 or as an npm package:
 ```properties
 # Using yarn
-yarn add @joaopaulo.vieira/clappr-media-control-plugin
+yarn add @joaopaulo.vieira/clappr-queue-plugin
 
 # Using npm
-npm i @joaopaulo.vieira/clappr-media-control-plugin
+npm i @joaopaulo.vieira/clappr-queue-plugin
 ```
 
 Then just add the `QueuePlugin` into the list of plugins of your player instance and set the media(s) to play in sequence on `queue.nextVideos` config:
