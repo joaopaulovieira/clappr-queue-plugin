@@ -34,6 +34,7 @@
     "bundle-check": "ANALYZE_BUNDLE=true rollup --config",
     "build": "rollup --config",
     "release": "MINIMIZE=true rollup --config",
+    "prepublishOnly": "npm run release",
     "start": "DEV=true rollup --config --watch",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
