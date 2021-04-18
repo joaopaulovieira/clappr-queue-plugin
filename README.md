@@ -9,6 +9,9 @@
 # Clappr queue plugin
 <div align=center><img src="./public/images/queue.gif"></div>
 
+## Demo
+https://joaopaulovieira.github.io/clappr-queue-plugin/
+
 ## Table of Contents
 - [Features](https://github.com/joaopaulovieira/clappr-queue-plugin#Features)
 - [Usage](https://github.com/joaopaulovieira/clappr-queue-plugin#Usage)
