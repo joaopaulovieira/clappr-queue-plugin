@@ -107,6 +107,10 @@ Install dependencies: `npm install`
 
 Run: `npm start`
 
+Test: `npm test`
+
+Lint: `npm run lint`
+
 Build: `npm run build`
 
 Minified version: `npm run release`
